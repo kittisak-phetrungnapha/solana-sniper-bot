@@ -106,7 +106,7 @@ export class Listeners extends EventEmitter {
     for (let i = this.subscriptions.length; i >= 0; --i) {
       const subscription = this.subscriptions[i];
       await this.connection.removeAccountChangeListener(subscription);
-      this.subscriptions.splice(i, 1);
     }
+    this.subscriptions = [];
   }
 }
