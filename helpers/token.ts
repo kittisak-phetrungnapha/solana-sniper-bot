@@ -7,9 +7,6 @@ export function getToken(token: string) {
     case 'WSOL': {
       return Token.WSOL;
     }
-    case 'SOL': {
-      return Token.WSOL;
-    }
     case 'USDC': {
       return new Token(
         TOKEN_PROGRAM_ID,
@@ -20,7 +17,7 @@ export function getToken(token: string) {
       );
     }
     default: {
-      throw new Error(`Unsupported quote mint "${token}". Supported values are USDC, WSOL, and SOL`);
+      throw new Error(`Unsupported quote mint "${token}". Supported values are USDC and WSOL`);
     }
   }
 }
