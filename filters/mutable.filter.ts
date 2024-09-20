@@ -3,7 +3,7 @@ import { Connection } from '@solana/web3.js';
 import { LiquidityPoolKeysV4 } from '@raydium-io/raydium-sdk';
 import { getPdaMetadataKey } from '@raydium-io/raydium-sdk';
 import { MetadataAccountData, MetadataAccountDataArgs } from '@metaplex-foundation/mpl-token-metadata';
-import { Serializer } from '@metaplex-foundation/umi/serializers';
+import { Serializer } from '@metaplex-foundation/umi-serializers';
 import { logger } from '../helpers';
 
 export class MutableFilter implements Filter {
