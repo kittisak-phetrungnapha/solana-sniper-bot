@@ -83,14 +83,13 @@ export class Bot {
   async validate() {
     try {
       await getAccount(this.connection, this.config.quoteAta, this.connection.commitment);
+      return true;
     } catch (error) {
       logger.error(
         `${this.config.quoteToken.symbol} token account not found in wallet: ${this.config.wallet.publicKey.toString()}`,
       );
       return false;
     }
-
-    return true;
   }
 
   public async buy(accountId: PublicKey, poolState: LiquidityStateV4) {
@@ -162,7 +161,6 @@ export class Bot {
               },
               `Confirmed buy tx`,
             );
-
             break;
           }
 
@@ -461,12 +459,7 @@ export class Bot {
           `Take profit: ${takeProfit.toFixed()} | Stop loss: ${stopLoss.toFixed()} | Current: ${amountOut.toFixed()}`,
         );
 
-        if (amountOut.lt(stopLoss)) {
-          this.stopLoss.delete(poolKeys.baseMint.toString());
-          break;
-        }
-
-        if (amountOut.gt(takeProfit)) {
+        if (amountOut.lt(stopLoss) || amountOut.gt(takeProfit)) {
           this.stopLoss.delete(poolKeys.baseMint.toString());
           break;
         }
